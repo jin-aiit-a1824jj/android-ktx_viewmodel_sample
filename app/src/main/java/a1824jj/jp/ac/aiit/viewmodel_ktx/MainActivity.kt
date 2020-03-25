@@ -4,8 +4,8 @@ import a1824jj.jp.ac.aiit.viewmodel_ktx.databinding.ActivityMainBinding
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,10 +16,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this , R.layout.activity_main)
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+        viewModel.getLiveData().observe(this, Observer {
+            binding.textView.text = it.toString()
+        })
+
         binding.apply {
-            textView.text = viewModel.getCurrentCount().toString()
             button.setOnClickListener {
-                textView.text = viewModel.getUpdatedCount().toString()
+                viewModel.getUpdatedCount()
             }
         }
     }
