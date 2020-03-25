@@ -16,14 +16,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this , R.layout.activity_main)
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+        binding.myViewModel = viewModel
         viewModel.getLiveData().observe(this, Observer {
             binding.textView.text = it.toString()
         })
-
-        binding.apply {
-            button.setOnClickListener {
-                viewModel.getUpdatedCount()
-            }
-        }
     }
 }

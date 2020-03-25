@@ -3,7 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
+<data>
+    <variable
+        name="myViewModel"
+        type="a1824jj.jp.ac.aiit.viewmodel_ktx.MainActivityViewModel" />
+</data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -25,12 +29,13 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Click here"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.165" />
+        app:layout_constraintVertical_bias="0.165"
+        android:onClick="@{()->myViewModel.getUpdatedCount()}"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
